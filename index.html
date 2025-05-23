@@ -8,137 +8,130 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            margin: 0; /* Remove default body margin */
-            padding: 20px; /* Add some padding around the whole page */
-            background-color: #f0f2f5; /* Lighter background */
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
             color: #333;
             line-height: 1.6;
-            min-height: 100vh; /* Ensure body takes full viewport height */
-            display: flex; /* Use flexbox for body to center content if needed */
+            min-height: 100vh;
+            display: flex;
             justify-content: center;
-            align-items: flex-start; /* Align content to the top */
-            box-sizing: border-box; /* Include padding in height calculation */
+            align-items: flex-start;
+            box-sizing: border-box;
         }
         h2 {
             text-align: center;
             color: #2c3e50;
             margin-bottom: 30px;
-            font-size: 2.2em; /* Larger heading */
+            font-size: 2.2em;
             font-weight: 700;
-            width: 100%; /* Ensure heading takes full width in its context */
+            width: 100%;
         }
-
-        /* New main container for horizontal layout */
         .main-container {
             display: flex;
-            flex-wrap: wrap; /* Allows wrapping on smaller screens */
-            gap: 30px; /* Space between the form and the output section */
-            max-width: 1200px; /* Max width for the entire application */
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
             width: 100%;
-            background-color: #ffffff; /* White background for the entire app area */
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             box-sizing: border-box;
         }
-
         form {
-            flex: 1; /* Allows form to grow and shrink */
-            min-width: 450px; /* Minimum width for the form column */
-            padding: 0; /* Remove padding as it's now on .main-container */
-            box-shadow: none; /* Remove shadow as it's on .main-container */
-            background-color: transparent; /* Remove background as it's on .main-container */
-            border-radius: 0; /* Remove border-radius */
+            flex: 1;
+            min-width: 450px;
+            padding: 0;
+            box-shadow: none;
+            background-color: transparent;
+            border-radius: 0;
         }
-
         .form-group {
-            margin-bottom: 20px; /* Increased margin for better spacing */
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 8px; /* Adjusted margin */
+            margin-bottom: 8px;
             font-weight: 600;
-            color: #4a5568; /* Slightly darker label color */
+            color: #4a5568;
             font-size: 1.05em;
         }
         input[type="text"], textarea {
             width: 100%;
-            padding: 12px 15px; /* Increased padding */
-            border: 1px solid #e2e8f0; /* Lighter border */
-            border-radius: 8px; /* More rounded inputs */
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
             font-size: 1em;
-            background-color: #f7fafc; /* Slightly off-white background */
+            background-color: #f7fafc;
             transition: border-color 0.3s, box-shadow 0.3s;
-            box-sizing: border-box; /* Include padding in width */
+            box-sizing: border-box;
         }
         input[type="text"]:focus, textarea:focus {
             outline: none;
-            border-color: #4299e1; /* Blue focus color */
-            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3); /* Soft blue glow */
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
         }
         textarea {
             resize: vertical;
-            min-height: 100px; /* Minimum height for textarea */
+            min-height: 100px;
         }
         button {
-            padding: 12px 20px; /* Generous padding for buttons */
+            padding: 12px 20px;
             border: none;
-            border-radius: 8px; /* Consistent rounded corners */
+            border-radius: 8px;
             font-size: 1em;
             font-weight: 500;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
-            display: flex; /* Changed from inline-flex to flex */
+            display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 45px; /* Increased min-height for better touch targets */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle button shadow */
-            box-sizing: border-box; /* Ensure padding is included in total dimensions */
-            line-height: 1; /* Normalize line height to prevent unexpected text height issues */
+            min-height: 45px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+            line-height: 1;
         }
         button:hover:not(:disabled) {
-            transform: translateY(-3px); /* More pronounced lift on hover */
+            transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
         .var2, .var3, .var4 {
-            background-color: #edf2f7; /* Light grey for unselected buttons */
+            background-color: #edf2f7;
             color: #4a5568;
         }
         .var2.selected, .var3.selected, .var4.selected {
-            background-color: #4299e1; /* Blue for selected buttons */
+            background-color: #4299e1;
             color: white;
-            box-shadow: 0 4px 10px rgba(66, 153, 225, 0.3); /* Blue shadow for selected */
+            box-shadow: 0 4px 10px rgba(66, 153, 225, 0.3);
         }
         #generateButton {
-            background-color: #48bb78; /* Green for generate */
+            background-color: #48bb78;
             color: white;
-            width: calc(50% - 10px); /* Adjust width to fit two buttons per row */
-            margin: 0 5px; /* Explicitly set margin for these buttons */
+            width: calc(50% - 10px);
+            margin: 0 5px;
             font-weight: 600;
         }
         #generateButton:hover {
             background-color: #38a169;
         }
         #clearButton {
-            background-color: #ef4444; /* Red for clear */
+            background-color: #ef4444;
             color: white;
-            width: calc(50% - 10px); /* Adjust width */
-            margin: 0 5px; /* Explicitly set margin for these buttons */
+            width: calc(50% - 10px);
+            margin: 0 5px;
             font-weight: 600;
         }
         #clearButton:hover {
             background-color: #dc2626;
         }
-
-        /* Container for output and copy button */
         .output-section {
-            flex: 1; /* Allows output section to grow and shrink */
-            min-width: 450px; /* Minimum width for the output column */
+            flex: 1;
+            min-width: 450px;
             display: flex;
-            flex-direction: column; /* Stack output and copy button vertically */
-            justify-content: space-between; /* Push output to top, copy to bottom */
+            flex-direction: column;
+            justify-content: space-between;
         }
-
         #output {
             padding: 20px;
             border: 1px solid #e2e8f0;
@@ -147,22 +140,22 @@
             white-space: pre-wrap;
             font-size: 0.95em;
             line-height: 1.7;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03); /* Inner shadow for output */
-            min-height: 120px; /* Ensure visibility even when empty */
-            color: #2d3748; /* Darker text for output */
-            flex-grow: 1; /* Allow output to take available vertical space */
-            margin-bottom: 20px; /* Space between output and copy button */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+            min-height: 120px;
+            color: #2d3748;
+            flex-grow: 1;
+            margin-bottom: 20px;
         }
         #copyButton {
-            background-color: #ed8936; /* Orange for copy */
+            background-color: #ed8936;
             color: white;
             padding: 12px 20px;
-            width: 100%; /* Full width for copy button within its container */
-            margin-top: 0; /* Reset margin-top as controlled by output margin-bottom */
+            width: 100%;
+            margin-top: 0;
             font-weight: 600;
         }
         #copyButton:disabled {
-            background-color: #cbd5e0; /* Lighter grey when disabled */
+            background-color: #cbd5e0;
             cursor: not-allowed;
             box-shadow: none;
             transform: none;
@@ -177,55 +170,53 @@
         }
         .checkbox-label-group label {
             margin-bottom: 0;
-            margin-left: 8px; /* Space between checkbox and label */
-            font-weight: 500; /* Slightly lighter font for checkbox label */
+            margin-left: 8px;
+            font-weight: 500;
             color: #4a5568;
         }
         .checkbox-label-group input[type="checkbox"] {
             width: auto;
             margin-right: 0;
-            transform: scale(1.2); /* Slightly larger checkbox */
-            accent-color: #4299e1; /* Blue checkbox color */
+            transform: scale(1.2);
+            accent-color: #4299e1;
         }
         .flex-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px; /* Increased gap */
+            gap: 15px;
             margin-bottom: 20px;
         }
         .flex-container .form-group {
             flex: 1;
-            min-width: 250px; /* Adjusted min-width for larger layout */
+            min-width: 250px;
             margin-bottom: 0;
         }
         .button-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px; /* Space between buttons within a group */
+            gap: 10px;
             margin-top: 10px;
         }
         .button-group button {
-            flex: 1; /* Allow buttons to grow within their group */
-            min-width: 120px; /* Minimum width for individual buttons */
-            margin: 0; /* Remove individual button margin when in group */
+            flex: 1;
+            min-width: 120px;
+            margin: 0;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 1024px) { /* Adjust breakpoint for horizontal layout */
+        @media (max-width: 1024px) {
             .main-container {
-                flex-direction: column; /* Stack columns on smaller screens */
+                flex-direction: column;
                 gap: 20px;
                 padding: 25px;
             }
             form, .output-section {
-                min-width: unset; /* Remove min-width to allow full width */
+                min-width: unset;
                 width: 100%;
             }
             #generateButton, #clearButton {
-                width: calc(50% - 10px); /* Keep side-by-side if enough space */
+                width: calc(50% - 10px);
             }
         }
-
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -238,17 +229,16 @@
                 padding: 20px;
             }
             #generateButton, #clearButton {
-                width: 100%; /* Stack buttons on smaller screens */
-                margin: 5px 0; /* Adjust margin for stacking */
+                width: 100%;
+                margin: 5px 0;
             }
             .flex-container .form-group {
-                min-width: 100%; /* Stack form groups on smaller screens */
+                min-width: 100%;
             }
             .button-group button {
-                min-width: 100px; /* Allow buttons to be smaller on mobile */
+                min-width: 100px;
             }
         }
-
         @media (max-width: 480px) {
             body {
                 padding: 10px;
@@ -276,25 +266,29 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #2d3748; /* Darker background */
+            /* transform: translate(-50%, -50%); Is set by show/hide states */
+            background-color: #2d3748;
             color: white;
             padding: 18px 30px;
-            border-radius: 10px; /* More rounded */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; /* Added transform transition */
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10000; /* Ensure it's above other elements */
             font-size: 1.1em;
             font-weight: 500;
             text-align: center;
             min-width: 250px;
+            
+            /* Initial state for transition: hidden and out of layout */
+            display: none;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9); 
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
         #customMessageBox.show {
+            /* display: block; will be set by JS */
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1); /* Scale up slightly on show */
+            transform: translate(-50%, -50%) scale(1);
         }
-
     </style>
 </head>
 <body>
@@ -357,10 +351,20 @@
         </div>
     </div>
 
+    <!-- Message box element will be created here by JS if it doesn't exist,
+         or you can pre-define it here and ensure it has the #customMessageBox id -->
     <script>
-        // Function to set current date in DD MMMYYYY format
+        // DOM Elements
+        const dateField = document.getElementById('dateField');
+        const formNumberField = document.getElementById('formNumber');
+        const notesField = document.getElementById('notes');
+        const outputArea = document.getElementById('output');
+        const copyButton = document.getElementById('copyButton');
+        const enableDateFieldCheckbox = document.getElementById('enableDateField');
+        const enableNotesFieldCheckbox = document.getElementById('enableNotesField');
+
+        // Function to set current date in DD MMM YYYY format
         function setCurrentDate() {
-            const dateField = document.getElementById('dateField');
             const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             const today = new Date();
             const day = String(today.getDate()).padStart(2, '0');
@@ -372,8 +376,7 @@
         // Set current date on initial page load
         setCurrentDate();
 
-        // Auto-save and load Form Number
-        const formNumberField = document.getElementById('formNumber');
+        // Auto-save and load Form Number from localStorage
         const savedFormNumber = localStorage.getItem('formNumber');
         if (savedFormNumber) {
             formNumberField.value = savedFormNumber;
@@ -382,147 +385,172 @@
             localStorage.setItem('formNumber', this.value);
         });
 
-        // Button selection logic
-        document.querySelectorAll('.var2, .var3, .var4').forEach(button => {
+        // Button selection logic (Improved)
+        document.querySelectorAll('.button-group button.var2, .button-group button.var3, .button-group button.var4').forEach(button => {
             button.addEventListener('click', function() {
-                console.log(`Button clicked: ${this.dataset.value}`); // Added for debugging
-                // Remove 'selected' class from all buttons in the same group
-                document.querySelectorAll(`.${this.className}`).forEach(btn => btn.classList.remove('selected'));
-                // Add 'selected' class to the clicked button
+                let groupClass = '';
+                if (this.classList.contains('var2')) groupClass = 'var2';
+                else if (this.classList.contains('var3')) groupClass = 'var3';
+                else if (this.classList.contains('var4')) groupClass = 'var4';
+
+                if (groupClass) {
+                    const parentButtonGroup = this.closest('.button-group');
+                    if (parentButtonGroup) {
+                        parentButtonGroup.querySelectorAll(`button.${groupClass}`).forEach(btn => {
+                            btn.classList.remove('selected');
+                        });
+                    }
+                }
                 this.classList.add('selected');
             });
         });
 
         // Function to set initial default selections for the button groups
         function setDefaultSelections() {
-            // Select '寄付' for Ship Method (var2)
             const defaultVar2Button = document.querySelector('.var2[data-value="寄付"]');
-            if (defaultVar2Button) {
-                defaultVar2Button.classList.add('selected');
-            }
+            if (defaultVar2Button) defaultVar2Button.classList.add('selected');
 
-            // Select '我' for Sender (var3)
             const defaultVar3Button = document.querySelector('.var3[data-value="我"]');
-            if (defaultVar3Button) {
-                defaultVar3Button.classList.add('selected');
-            }
+            if (defaultVar3Button) defaultVar3Button.classList.add('selected');
 
-            // Select '店到店優惠' for Shipping Option (var4)
             const defaultVar4Button = document.querySelector('.var4[data-value="店到店優惠"]');
-            if (defaultVar4Button) {
-                defaultVar4Button.classList.add('selected');
-            }
+            if (defaultVar4Button) defaultVar4Button.classList.add('selected');
         }
 
-        // Call setDefaultSelections on page load to ensure initial defaults are set
+        // Call setDefaultSelections on page load
         document.addEventListener('DOMContentLoaded', setDefaultSelections);
 
 
         function generateMessage() {
-            // Get checkbox states
-            const enableDateField = document.getElementById('enableDateField').checked;
-            const enableNotesField = document.getElementById('enableNotesField').checked;
+            const useDate = enableDateFieldCheckbox.checked;
+            const useNotes = enableNotesFieldCheckbox.checked;
 
-            // Conditionally get values based on checkbox states
-            const date = enableDateField ? dateField.value : '';
-            const formNumber = document.getElementById('formNumber').value || '[Form Number]';
-            const var2 = document.querySelector('.var2.selected')?.dataset.value || '[寄付/到付]';
-            const var3 = document.querySelector('.var3.selected')?.dataset.value || '[我/TSC]';
-            const var4 = document.querySelector('.var4.selected')?.dataset.value || '[店到店優惠/店到門優惠/E-Comm Box]';
-            const notesValue = document.getElementById('notes').value;
-            const notes = enableNotesField && notesValue ? notesValue : '';
+            const dateValue = useDate ? dateField.value : '';
+            const formNumberValue = formNumberField.value || '[Form Number]';
+            const var2Value = document.querySelector('.var2.selected')?.dataset.value || '[寄付/到付]';
+            const var3Value = document.querySelector('.var3.selected')?.dataset.value || '[我/TSC]';
+            const var4Value = document.querySelector('.var4.selected')?.dataset.value || '[店到店優惠/店到門優惠/E-Comm Box]';
+            const notesValueText = notesField.value;
+            const notesContent = useNotes && notesValueText ? notesValueText : '';
 
-            // Construct message parts conditionally
-            const dateLineText = enableDateField ? `Your 28CarParts Store order confirmation - 入數交易 ${date}` : '';
-
-            // Build the message, adding a newline after the dateLineText only if it's not empty
-            let message = `${dateLineText}${dateLineText ? '\n\n' : ''}Hi Angle,
+            const dateLine = useDate ? `Your 28CarParts Store order confirmation - 入數交易 ${dateValue}` : '';
+            
+            let message = `${dateLine}${dateLine ? '\n\n' : ''}Hi Angle,
 
 Please help to ship, thanks!
-- Form #${formNumber} (${var2})
-- ${var3}交下來 (${var4})`;
+- Form #${formNumberValue} (${var2Value})
+- ${var3Value}交下來 (${var4Value})`;
 
-            if (notes) {
-                message += `\n\n${notes}`; // Add two newlines if notes are enabled and present
+            if (notesContent) {
+                message += `\n\n${notesContent}`;
             }
 
-
-            document.getElementById('output').textContent = message;
-            document.getElementById('copyButton').disabled = false;
+            outputArea.textContent = message;
+            copyButton.disabled = false;
         }
 
         function clearForm() {
-            // Clear all button selections
-            document.querySelectorAll('.var2, .var3, .var4').forEach(button => {
+            document.querySelectorAll('.var2.selected, .var3.selected, .var4.selected').forEach(button => {
                 button.classList.remove('selected');
             });
-            // Clear Additional Notes
-            document.getElementById('notes').value = '';
-            // Clear output and disable Copy to Clipboard
-            document.getElementById('output').textContent = '';
-            document.getElementById('copyButton').disabled = true;
-            // Reset checkboxes to checked
-            document.getElementById('enableDateField').checked = true;
-            document.getElementById('enableNotesField').checked = true;
+            notesField.value = '';
+            outputArea.textContent = '';
+            copyButton.disabled = true;
+            enableDateFieldCheckbox.checked = true;
+            enableNotesFieldCheckbox.checked = true;
+            setCurrentDate(); // Reset date field
+            setDefaultSelections(); // Re-apply default button selections
+        }
+        
+        // Custom message box functions (Improved)
+        let messageBoxHideTimeout = null;
+        let messageBoxDisplayTimeout = null;
 
-            // Reset the date field to the current date
-            setCurrentDate();
+        function showMessageBox(message) {
+            let msgBox = document.getElementById('customMessageBox');
+            if (!msgBox) {
+                msgBox = document.createElement('div');
+                msgBox.id = 'customMessageBox';
+                document.body.appendChild(msgBox);
+            }
+            msgBox.textContent = message;
 
-            // Re-apply default selections after clearing
-            setDefaultSelections();
+            // Clear any existing hide timeouts to handle rapid calls
+            if (messageBoxHideTimeout) clearTimeout(messageBoxHideTimeout);
+            if (messageBoxDisplayTimeout) clearTimeout(messageBoxDisplayTimeout);
+
+            msgBox.style.display = 'block'; // Make it part of the layout
+
+            // Use requestAnimationFrame to ensure display:block is rendered before adding .show for transition
+            requestAnimationFrame(() => {
+                // A second RAF can sometimes help ensure the transition starts smoothly after display change.
+                requestAnimationFrame(() => { 
+                    msgBox.classList.add('show');
+                });
+            });
+
+            messageBoxHideTimeout = setTimeout(() => {
+                msgBox.classList.remove('show'); // Start fade out animation
+
+                messageBoxDisplayTimeout = setTimeout(() => {
+                    // Only set display:none if it's still meant to be hidden (not re-shown by another call)
+                    if (!msgBox.classList.contains('show')) {
+                         msgBox.style.display = 'none';
+                    }
+                }, 300); // Match CSS transition duration (0.3s)
+            }, 2000); // How long the message stays fully visible
         }
 
+
         function copyToClipboard() {
-            const output = document.getElementById('output').textContent;
-            if (!output) {
-                // Using a custom message box instead of alert()
+            const textToCopy = outputArea.textContent;
+            if (!textToCopy) {
                 showMessageBox('Please generate a message first!');
                 return;
             }
 
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(output).then(() => {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).then(() => {
                     showMessageBox('Message copied to clipboard!');
                 }).catch(err => {
-                    fallbackCopyText(output);
+                    console.warn('Async clipboard copy failed, falling back.', err);
+                    fallbackCopyText(textToCopy);
                 });
             } else {
-                fallbackCopyText(output);
+                console.warn('Async clipboard API not available, falling back.');
+                fallbackCopyText(textToCopy);
             }
         }
 
         function fallbackCopyText(text) {
             const textArea = document.createElement('textarea');
             textArea.value = text;
+            // Styling to make it non-intrusive and off-screen
             textArea.style.position = 'fixed';
+            textArea.style.top = '-9999px';
+            textArea.style.left = '-9999px';
+            textArea.style.width = '1px';
+            textArea.style.height = '1px';
             textArea.style.opacity = '0';
+            textArea.style.border = 'none';
+            textArea.style.padding = '0';
+            textArea.style.margin = '0';
+            textArea.style.overflow = 'hidden';
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
             try {
-                document.execCommand('copy');
-                showMessageBox('Message copied to clipboard!');
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showMessageBox('Message copied (fallback)!');
+                } else {
+                    showMessageBox('Fallback copy failed.');
+                }
             } catch (err) {
-                showMessageBox('Failed to copy: ' + err);
+                console.error('Error during fallback copy:', err);
+                showMessageBox('Error copying (fallback).');
             }
             document.body.removeChild(textArea);
-        }
-
-        // Custom message box functions
-        function showMessageBox(message) {
-            let messageBox = document.getElementById('customMessageBox');
-            if (!messageBox) {
-                messageBox = document.createElement('div');
-                messageBox.id = 'customMessageBox';
-                // Styles are now mostly in the CSS block for better maintainability
-                document.body.appendChild(messageBox);
-            }
-            messageBox.textContent = message;
-            messageBox.classList.add('show'); // Add 'show' class to trigger transition
-
-            setTimeout(() => {
-                messageBox.classList.remove('show'); // Remove 'show' class to hide
-            }, 2000); // Hide after 2 seconds
         }
     </script>
 </body>
