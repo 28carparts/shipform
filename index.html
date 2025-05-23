@@ -381,6 +381,7 @@
         // Button selection logic
         document.querySelectorAll('.var2, .var3, .var4').forEach(button => {
             button.addEventListener('click', function() {
+                console.log(`Button clicked: ${this.dataset.value}`); // Added for debugging
                 // Remove 'selected' class from all buttons in the same group
                 document.querySelectorAll(`.${this.className}`).forEach(btn => btn.classList.remove('selected'));
                 // Add 'selected' class to the clicked button
