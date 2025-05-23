@@ -411,7 +411,7 @@
             const defaultVar2Button = document.querySelector('.var2[data-value="寄付"]');
             if (defaultVar2Button) defaultVar2Button.classList.add('selected');
 
-            const defaultVar3Button = document.querySelector('.var3[data-value="我"]');
+            const defaultVar3Button = document.querySelector('.var3[data-value="我交下來"]');
             if (defaultVar3Button) defaultVar3Button.classList.add('selected');
 
             const defaultVar4Button = document.querySelector('.var4[data-value="店到店優惠"]');
@@ -429,7 +429,7 @@
             const dateValue = useDate ? dateField.value : '';
             const formNumberValue = formNumberField.value || '[Form Number]';
             const var2Value = document.querySelector('.var2.selected')?.dataset.value || '[寄付/到付]';
-            const var3Value = document.querySelector('.var3.selected')?.dataset.value || '[我/TSC]';
+            const var3Value = document.querySelector('.var3.selected')?.dataset.value || '[我交下來/TSC交下來/用我貨]';
             const var4Value = document.querySelector('.var4.selected')?.dataset.value || '[店到店優惠/店到門優惠/E-Comm Box]';
             const notesValueText = notesField.value;
             const notesContent = useNotes && notesValueText ? notesValueText : '';
