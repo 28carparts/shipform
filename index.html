@@ -381,10 +381,37 @@
         // Button selection logic
         document.querySelectorAll('.var2, .var3, .var4').forEach(button => {
             button.addEventListener('click', function() {
+                // Remove 'selected' class from all buttons in the same group
                 document.querySelectorAll(`.${this.className}`).forEach(btn => btn.classList.remove('selected'));
+                // Add 'selected' class to the clicked button
                 this.classList.add('selected');
             });
         });
+
+        // Function to set initial default selections for the button groups
+        function setDefaultSelections() {
+            // Select '寄付' for Ship Method (var2)
+            const defaultVar2Button = document.querySelector('.var2[data-value="寄付"]');
+            if (defaultVar2Button) {
+                defaultVar2Button.classList.add('selected');
+            }
+
+            // Select '我' for Sender (var3)
+            const defaultVar3Button = document.querySelector('.var3[data-value="我"]');
+            if (defaultVar3Button) {
+                defaultVar3Button.classList.add('selected');
+            }
+
+            // Select '店到店優惠' for Shipping Option (var4)
+            const defaultVar4Button = document.querySelector('.var4[data-value="店到店優惠"]');
+            if (defaultVar4Button) {
+                defaultVar4Button.classList.add('selected');
+            }
+        }
+
+        // Call setDefaultSelections on page load to ensure initial defaults are set
+        document.addEventListener('DOMContentLoaded', setDefaultSelections);
+
 
         function generateMessage() {
             // Get checkbox states
@@ -420,7 +447,7 @@ Please help to ship, thanks!
         }
 
         function clearForm() {
-            // Clear button selections
+            // Clear all button selections
             document.querySelectorAll('.var2, .var3, .var4').forEach(button => {
                 button.classList.remove('selected');
             });
@@ -432,6 +459,9 @@ Please help to ship, thanks!
             // Reset checkboxes to checked
             document.getElementById('enableDateField').checked = true;
             document.getElementById('enableNotesField').checked = true;
+
+            // Re-apply default selections after clearing
+            setDefaultSelections();
         }
 
         function copyToClipboard() {
