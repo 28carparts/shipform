@@ -358,14 +358,19 @@
     </div>
 
     <script>
-        // Set current date in DD MMMYYYY format
-        const dateField = document.getElementById('dateField');
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const today = new Date();
-        const day = String(today.getDate()).padStart(2, '0');
-        const month = months[today.getMonth()];
-        const year = today.getFullYear();
-        dateField.value = `${day} ${month} ${year}`;
+        // Function to set current date in DD MMMYYYY format
+        function setCurrentDate() {
+            const dateField = document.getElementById('dateField');
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = months[today.getMonth()];
+            const year = today.getFullYear();
+            dateField.value = `${day} ${month} ${year}`;
+        }
+
+        // Set current date on initial page load
+        setCurrentDate();
 
         // Auto-save and load Form Number
         const formNumberField = document.getElementById('formNumber');
@@ -459,6 +464,9 @@ Please help to ship, thanks!
             // Reset checkboxes to checked
             document.getElementById('enableDateField').checked = true;
             document.getElementById('enableNotesField').checked = true;
+
+            // Reset the date field to the current date
+            setCurrentDate();
 
             // Re-apply default selections after clearing
             setDefaultSelections();
