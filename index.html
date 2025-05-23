@@ -82,18 +82,19 @@
         }
         button {
             padding: 12px 20px; /* Generous padding for buttons */
-            margin: 5px; /* Adjusted margin */
             border: none;
             border-radius: 8px; /* Consistent rounded corners */
             font-size: 1em;
             font-weight: 500;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
-            display: inline-flex;
+            display: flex; /* Changed from inline-flex to flex */
             align-items: center;
             justify-content: center;
             min-height: 45px; /* Increased min-height for better touch targets */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle button shadow */
+            box-sizing: border-box; /* Ensure padding is included in total dimensions */
+            line-height: 1; /* Normalize line height to prevent unexpected text height issues */
         }
         button:hover:not(:disabled) {
             transform: translateY(-3px); /* More pronounced lift on hover */
@@ -112,8 +113,7 @@
             background-color: #48bb78; /* Green for generate */
             color: white;
             width: calc(50% - 10px); /* Adjust width to fit two buttons per row */
-            margin-right: 5px; /* Space between buttons */
-            margin-left: 5px;
+            margin: 0 5px; /* Explicitly set margin for these buttons */
             font-weight: 600;
         }
         #generateButton:hover {
@@ -123,8 +123,7 @@
             background-color: #ef4444; /* Red for clear */
             color: white;
             width: calc(50% - 10px); /* Adjust width */
-            margin-left: 5px; /* Space between buttons */
-            margin-right: 5px;
+            margin: 0 5px; /* Explicitly set margin for these buttons */
             font-weight: 600;
         }
         #clearButton:hover {
