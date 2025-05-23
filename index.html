@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Ship Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 700px;
+            margin: 20px auto; /* Reduced margin */
+            padding: 15px; /* Reduced padding */
+            background-color: #f4f7fa;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px; /* Reduced margin */
+            font-size: 1.8em;
+        }
+        .form-group {
+            margin-bottom: 10px; /* Significantly reduced margin */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px; /* Reduced margin */
+            font-weight: 600;
+            color: #34495e;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px; /* Slightly reduced padding */
+            border: 1px solid #dfe6e9;
+            border-radius: 6px;
+            font-size: 1em;
+            background-color: #fff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            padding: 8px 15px; /* Slightly reduced padding */
+            margin: 3px; /* Reduced margin */
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95em; /* Slightly reduced font size */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            /* Added styles for consistent button height */
+            display: inline-flex; /* Use flexbox for content alignment */
+            align-items: center; /* Vertically center content */
+            justify-content: center; /* Horizontally center content */
+            min-height: 38px; /* Set a minimum height to ensure consistency */
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+        .var2, .var3, .var4 {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        .var2.selected, .var3.selected, .var4.selected {
+            background-color: #3498db;
+            color: white;
+        }
+        #generateButton {
+            background-color: #2ecc71;
+            color: white;
+            width: 100%;
+            padding: 10px; /* Slightly reduced padding */
+            font-weight: 600;
+        }
+        #generateButton:hover {
+            background-color: #27ae60;
+        }
+        #clearButton {
+            background-color: #e74c3c;
+            color: white;
+            width: 100%;
+            padding: 10px; /* Slightly reduced padding */
+            font-weight: 600;
+        }
+        #clearButton:hover {
+            background-color: #c0392b;
+        }
+        #output {
+            margin-top: 15px; /* Reduced margin */
+            padding: 12px; /* Slightly reduced padding */
+            border: 1px solid #dfe6e9;
+            border-radius: 6px;
+            background-color: #fff;
+            white-space: pre-wrap;
+            font-size: 0.9em; /* Slightly reduced font size */
+            line-height: 1.5;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        #copyButton {
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px; /* Slightly reduced padding */
+            width: 100%;
+            font-weight: 600;
+        }
+        #copyButton:disabled {
+            background-color: #b0bec5;
+            cursor: not-allowed;
+        }
+        #copyButton:hover:not(:disabled) {
+            background-color: #d35400;
+        }
+        .checkbox-label-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px; /* Reduced margin */
+        }
+        .checkbox-label-group label {
+            margin-bottom: 0;
+            margin-left: 5px;
+        }
+        .checkbox-label-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 0;
+        }
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+            gap: 10px; /* Space between flex items */
+            margin-bottom: 10px; /* Maintain consistent spacing below the container */
+        }
+        .flex-container .form-group {
+            flex: 1; /* Allows form groups to grow and shrink */
+            min-width: 250px; /* Ensures they don't get too narrow on smaller screens */
+            margin-bottom: 0; /* Remove individual form-group margin when inside flex */
+        }
+        @media (max-width: 500px) {
+            body {
+                padding: 10px; /* Further reduced padding for small screens */
+            }
+            button {
+                padding: 6px 10px;
+                font-size: 0.85em;
+                min-height: 32px; /* Adjusted min-height for smaller screens */
+            }
+            .flex-container .form-group {
+                min-width: 100%; /* Stack on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Email Ship Form</h2>
+    <form id="orderForm">
+        <div class="form-group">
+            <div class="checkbox-label-group">
+                <input type="checkbox" id="enableDateField" checked>
+                <label for="enableDateField">Date (DD MM YYYY):</label>
+            </div>
+            <input type="text" id="dateField">
+        </div>
+        <div class="form-group">
+            <label for="formNumber">SF Form Number:</label>
+            <input type="text" id="formNumber" placeholder="Enter SF form number">
+        </div>
+
+        <div class="flex-container">
+            <div class="form-group">
+                <label>Ship Method:</label>
+                <button type="button" class="var2" data-value="寄付">寄付</button>
+                <button type="button" class="var2" data-value="到付">到付</button>
+            </div>
+            <div class="form-group">
+                <label>Sender:</label>
+                <button type="button" class="var3" data-value="我">我</button>
+                <button type="button" class="var3" data-value="TSC">TSC</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Shipping Option:</label>
+            <button type="button" class="var4" data-value="店到店優惠">店到店優惠</button>
+            <button type="button" class="var4" data-value="店到門優惠">店到門優惠</button>
+            <button type="button" class="var4" data-value="E-Comm Box">E-Comm Box</button>
+        </div>
+        <div class="form-group">
+            <div class="checkbox-label-group">
+                <input type="checkbox" id="enableNotesField" checked>
+                <label for="enableNotesField">Order Items:</label>
+            </div>
+            <textarea id="notes" rows="4" placeholder="Enter order items"></textarea>
+        </div>
+        <button type="button" id="generateButton" onclick="generateMessage()">Generate Message</button>
+        <button type="button" id="clearButton" onclick="clearForm()">Clear</button>
+    </form>
+    <div id="output"></div>
+    <button id="copyButton" onclick="copyToClipboard()" disabled>Copy to Clipboard</button>
+
+    <script>
+        // Set current date in DD MMMYYYY format
+        const dateField = document.getElementById('dateField');
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = months[today.getMonth()];
+        const year = today.getFullYear();
+        dateField.value = `${day} ${month} ${year}`;
+
+        // Auto-save and load Form Number
+        const formNumberField = document.getElementById('formNumber');
+        const savedFormNumber = localStorage.getItem('formNumber');
+        if (savedFormNumber) {
+            formNumberField.value = savedFormNumber;
+        }
+        formNumberField.addEventListener('input', function() {
+            localStorage.setItem('formNumber', this.value);
+        });
+
+        // Button selection logic
+        document.querySelectorAll('.var2, .var3, .var4').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll(`.${this.className}`).forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        function generateMessage() {
+            // Get checkbox states
+            const enableDateField = document.getElementById('enableDateField').checked;
+            const enableNotesField = document.getElementById('enableNotesField').checked;
+
+            // Conditionally get values based on checkbox states
+            const date = enableDateField ? dateField.value : '';
+            const formNumber = document.getElementById('formNumber').value || '[Form Number]';
+            const var2 = document.querySelector('.var2.selected')?.dataset.value || '[寄付/到付]';
+            const var3 = document.querySelector('.var3.selected')?.dataset.value || '[我/TSC]';
+            const var4 = document.querySelector('.var4.selected')?.dataset.value || '[店到店優惠/店到門優惠/E-Comm Box]';
+            const notesValue = document.getElementById('notes').value;
+            const notes = enableNotesField && notesValue ? notesValue : '';
+
+            // Construct message parts conditionally
+            const dateLineText = enableDateField ? `Your 28CarParts Store order confirmation - 入數交易 ${date}` : '';
+
+            // Build the message, adding a newline after the dateLineText only if it's not empty
+            let message = `${dateLineText}${dateLineText ? '\n\n' : ''}Hi Angle,
+
+Please help to ship, thanks!
+- Form #${formNumber} (${var2})
+- ${var3}交下來 (${var4})`;
+
+            if (notes) {
+                message += `\n\n${notes}`; // Add two newlines if notes are enabled and present
+            }
+
+
+            document.getElementById('output').textContent = message;
+            document.getElementById('copyButton').disabled = false;
+        }
+
+        function clearForm() {
+            // Clear button selections
+            document.querySelectorAll('.var2, .var3, .var4').forEach(button => {
+                button.classList.remove('selected');
+            });
+            // Clear Additional Notes
+            document.getElementById('notes').value = '';
+            // Clear output and disable Copy to Clipboard
+            document.getElementById('output').textContent = '';
+            document.getElementById('copyButton').disabled = true;
+            // Reset checkboxes to checked
+            document.getElementById('enableDateField').checked = true;
+            document.getElementById('enableNotesField').checked = true;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('output').textContent;
+            if (!output) {
+                // Using a custom message box instead of alert()
+                showMessageBox('Please generate a message first!');
+                return;
+            }
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(output).then(() => {
+                    showMessageBox('Message copied to clipboard!');
+                }).catch(err => {
+                    fallbackCopyText(output);
+                });
+            } else {
+                fallbackCopyText(output);
+            }
+        }
+
+        function fallbackCopyText(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showMessageBox('Message copied to clipboard!');
+            } catch (err) {
+                showMessageBox('Failed to copy: ' + err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Custom message box functions
+        function showMessageBox(message) {
+            let messageBox = document.getElementById('customMessageBox');
+            if (!messageBox) {
+                messageBox = document.createElement('div');
+                messageBox.id = 'customMessageBox';
+                messageBox.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: opacity 0.3s ease-in-out;
+                    font-size: 1.1em;
+                `;
+                document.body.appendChild(messageBox);
+            }
+            messageBox.textContent = message;
+            messageBox.style.opacity = '1';
+
+            setTimeout(() => {
+                messageBox.style.opacity = '0';
+            }, 2000); // Hide after 2 seconds
+        }
+    </script>
+</body>
+</html>
